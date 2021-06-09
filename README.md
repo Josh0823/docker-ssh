@@ -8,7 +8,7 @@ Do this to build & start the containers:
 
 Then find the local container using `docker ps` and do this:
 
-    docker exec -it <local-container-id>
+    docker exec -it <local-container-id> bash
     bash test-user.sh remote admin
 
 You should now be in the remote container via ssh.
