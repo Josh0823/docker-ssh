@@ -20,9 +20,7 @@ RUN \
     adduser -q --gecos "" --disabled-password user1     && \
     echo user1:user1 | chpasswd
 
-# ADD test-user.sh .
-
-WORKDIR /home
+WORKDIR /root
 ADD docker-entrypoint.sh /srv
 RUN chmod +x /srv/docker-entrypoint.sh
 ENTRYPOINT [ "/srv/docker-entrypoint.sh" ]

@@ -1,5 +1,7 @@
 #!/bin/bash
 
+# this script mimics the output of "conda env list" for testing purposes
+
 var1=$1
 var2=$2
 

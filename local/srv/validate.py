@@ -10,7 +10,7 @@ class Validator():
         self.hostname = hostname
 
     async def validate(self, user, path, entrypoint_type):
-        print(f'Validating {path} ({entrypoint_type})')
+        print(f'Validating {path}')
 
         try:
             response = await self._get_conda_envs()
@@ -42,12 +42,13 @@ async def main():
     try:
         hostname = sys.argv[1]
         username = sys.argv[2]
+        path = sys.argv[3]
     except:
         raise Exception('Error: missing cmd line arguments')
-
+    
     v = Validator(username, hostname)
 
-    if await v.validate('admin', '/home/admin/miniconda3/envs/test-env', 'conda'):
+    if await v.validate(username, path, 'conda'):
         print('Validation successful')
     else:
         print('Validation failed')
