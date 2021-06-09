@@ -20,8 +20,8 @@ RUN \
     adduser -q --gecos "" --disabled-password user1     && \
     echo user1:user1 | chpasswd
 
-WORKDIR /root
-ADD docker-entrypoint.sh /srv
-RUN chmod +x /srv/docker-entrypoint.sh
-ENTRYPOINT [ "/srv/docker-entrypoint.sh" ]
+WORKDIR /srv
+ADD docker-entrypoint.sh /tmp
+RUN chmod +x /tmp/docker-entrypoint.sh
+ENTRYPOINT [ "/tmp/docker-entrypoint.sh" ]
 CMD ["sleep", "9999"]

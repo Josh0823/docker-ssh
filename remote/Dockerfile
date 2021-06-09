@@ -1,7 +1,5 @@
 FROM ubuntu:latest
 
-WORKDIR /srv
-
 RUN \
     apt-get update          &&  \
     apt-get upgrade --yes   &&  \
@@ -13,8 +11,8 @@ RUN \
 RUN \
     mkdir -p /var/run/sshd
 
-ADD ./srv/bin/conda /home/admin/bin
-RUN echo "export PATH=/home/admin/bin:${PATH}" > /etc/environment
+ADD ./srv/bin/conda /tmp/bin/conda
+RUN echo "export PATH=/tmp/bin:${PATH}" > /etc/environment
 
 RUN \
     adduser -q --gecos "" --disabled-password admin     && \
@@ -25,7 +23,7 @@ RUN \
     echo user1:user1 | chpasswd
 
 WORKDIR /srv
-ADD docker-entrypoint.sh .
-RUN chmod +x docker-entrypoint.sh
-ENTRYPOINT [ "./docker-entrypoint.sh" ]
+ADD docker-entrypoint.sh /tmp
+RUN chmod +x /tmp/docker-entrypoint.sh
+ENTRYPOINT [ "bash", "/tmp/docker-entrypoint.sh" ]
 CMD [ "/usr/sbin/sshd", "-p", "22", "-D" ]

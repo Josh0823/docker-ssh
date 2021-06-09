@@ -1,7 +1,6 @@
 import asyncio
 import asyncssh
 import sys
-import os
 
 
 class Validator():
@@ -45,7 +44,7 @@ async def main():
         path = sys.argv[3]
     except:
         raise Exception('Error: missing cmd line arguments')
-    
+
     v = Validator(username, hostname)
 
     if await v.validate(username, path, 'conda'):
@@ -55,4 +54,4 @@ async def main():
 
 
 if __name__ == '__main__':
-    asyncio.run(main())
+    asyncio.get_event_loop().run_until_complete(main())

@@ -1,10 +1,8 @@
 #!/bin/bash
 
-echo Generating secrets...
+echo Generating ssh creds...
 rm -rf secrets
 mkdir secrets
-
-echo Generating ssh creds...
 ssh-keygen -t rsa -N '' -C ca@localhost -f secrets/creds
 ssh-keygen -s secrets/creds -h -I localhost secrets/creds.pub
 

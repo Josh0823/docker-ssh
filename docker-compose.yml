@@ -5,13 +5,14 @@ services:
       - creds
       - creds-cert.pub
     volumes:
-      - ${PWD}/local/srv:/root
+      - ${PWD}/local/srv:/srv
   remote:
     image: remote
     secrets:
       - creds.pub
     volumes:
-      - ${PWD}/remote/srv:/root
+      - ${PWD}/remote/srv:/srv
+      - ${PWD}/remote/home:/home
 secrets:
   creds:
     file: secrets/creds

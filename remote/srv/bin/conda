@@ -12,9 +12,10 @@ elif [ -z "$var2" ]
 then
     echo "usage: conda env {list}"
 else
+    user="$(whoami)"
     echo "# conda environments:"
     echo "#"
-    for u in $(ls /$PWD/miniconda3/envs); do 
+    for u in $(ls /home/$user/miniconda3/envs); do 
         echo -e "$u                        $PWD/miniconda3/envs/$u"
     done
 fi
