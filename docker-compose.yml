@@ -1,0 +1,21 @@
+services:
+  local:
+    image: local
+    secrets:
+      - creds
+      - creds-cert.pub
+    volumes:
+      - ${PWD}/local/srv:/home/admin
+  remote:
+    image: remote
+    secrets:
+      - creds.pub
+    volumes:
+      - ${PWD}/remote/srv:/home/admin
+secrets:
+  creds:
+    file: secrets/creds
+  creds.pub:
+    file: secrets/creds.pub
+  creds-cert.pub:
+    file: secrets/creds-cert.pub
